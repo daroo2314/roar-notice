@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>어흥축제 장소변경 안내 | ROAR Festival Venue Change</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5e6d3;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #f5e6d3;
+            position: relative;
+        }
+        
+        .poster {
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5bd 100%);
+            border: 12px solid #a0522d;
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        /* Korean traditional border pattern */
+        .inner-border {
+            border: 4px double #a0522d;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .inner-border::before,
+        .inner-border::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 4px solid #a0522d;
+        }
+        
+        .inner-border::before {
+            top: -4px;
+            left: -4px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .inner-border::after {
+            top: -4px;
+            right: -4px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        /* Decorative roof */
+        .roof {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .roof-img {
+            width: 200px;
+            height: 80px;
+            background: #a0522d;
+            margin: 0 auto 10px;
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            border: 3px solid #8b4513;
+        }
+        
+        .roof-img::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 15px;
+            background: repeating-linear-gradient(
+                90deg,
+                #a0522d 0px,
+                #a0522d 15px,
+                transparent 15px,
+                transparent 20px
+            );
+        }
+        
+        /* Decorative clouds */
+        .cloud {
+            width: 60px;
+            height: 20px;
+            background: #cd853f;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+        
+        .cloud-left { left: 60px; }
+        .cloud-right { right: 60px; }
+        
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: #cd853f;
+            border-radius: 50%;
+        }
+        
+        .cloud::before {
+            width: 25px;
+            height: 25px;
+            top: -10px;
+            left: 10px;
+        }
+        
+        .cloud::after {
+            width: 30px;
+            height: 30px;
+            top: -12px;
+            right: 10px;
+        }
+        
+        /* Megaphone icon */
+        .megaphone {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            color: #1a237e;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 22px;
+            color: #333;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        
+        .urgent-box {
+            background: #fff3cd;
+            border: 4px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .urgent-box p {
+            font-size: 20px;
+            color: #333;
+            line-height: 1.6;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        
+        .venue-section {
+            background: white;
+            border: 4px solid #a0522d;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .venue-title {
+            font-size: 32px;
+            color: #a0522d;
+            margin-bottom: 20px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .diamond {
+            width: 20px;
+            height: 20px;
+            background: #a0522d;
+            transform: rotate(45deg);
+        }
+        
+        .address {
+            font-size: 32px;
+            color: #1a237e;
+            font-weight: 900;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+        
+        .address-sub {
+            font-size: 24px;
+            color: #333;
+            margin: 10px 0;
+            font-weight: 700;
+        }
+        
+        .info-text {
+            font-size: 20px;
+            color: #333;
+            margin: 15px 0;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        
+        .contact-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 3px solid #a0522d;
+        }
+        
+        .contact-section p {
+            font-size: 18px;
+            color: #333;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        
+        /* Website button */
+        .website-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .website-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 8px 20px rgba(160, 82, 45, 0.4);
+            transition: all 0.3s ease;
+            border: 4px solid #6b3410;
+            line-height: 1.6;
+        }
+        
+        .website-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(160, 82, 45, 0.6);
+            background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+        }
+        
+        .website-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .button-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            opacity: 0.95;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        /* Decorative flowers */
+        .flower {
+            width: 60px;
+            height: 60px;
+            background: #cd853f;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 30px;
+        }
+        
+        .flower-left { left: 40px; }
+        .flower-right { right: 40px; }
+        
+        .flower::before,
+        .flower::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #cd853f;
+            border-radius: 50%;
+        }
+        
+        .flower::before {
+            top: -20px;
+            left: 10px;
+        }
+        
+        .flower::after {
+            top: 10px;
+            left: -20px;
+        }
+        
+        /* English section styling */
+        .divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, #a0522d 20%, #a0522d 80%, transparent);
+            margin: 40px 0;
+        }
+        
+        .en-section {
+            margin-top: 40px;
+        }
+        
+        .en-section h2 {
+            font-size: 42px;
+            color: #1a237e;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .poster {
+                padding: 25px;
+            }
+            
+            .inner-border {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .venue-title {
+                font-size: 26px;
+            }
+            
+            .address {
+                font-size: 24px;
+            }
+            
+            .address-sub {
+                font-size: 20px;
+            }
+            
+            .info-text {
+                font-size: 17px;
+            }
+            
+            .cloud, .flower {
+                display: none;
+            }
+            
+            .en-section h2 {
+                font-size: 32px;
+            }
+            
+            .website-button {
+                font-size: 18px;
+                padding: 18px 35px;
+            }
+            
+            .button-subtitle {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .poster {
+                padding: 15px;
+                border-width: 8px;
+            }
+            
+            .inner-border {
+                padding: 15px;
+                border-width: 3px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .megaphone {
+                font-size: 40px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .urgent-box p {
+                font-size: 17px;
+            }
+            
+            .venue-title {
+                font-size: 22px;
+            }
+            
+            .address {
+                font-size: 20px;
+            }
+            
+            .address-sub {
+                font-size: 18px;
+            }
+            
+            .info-text {
+                font-size: 15px;
+            }
+            
+            .contact-section p {
+                font-size: 15px;
+            }
+            
+            .en-section h2 {
+                font-size: 26px;
+            }
+            
+            .website-button {
+                font-size: 16px;
+                padding: 15px 25px;
+                border-width: 3px;
+            }
+            
+            .button-subtitle {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="poster">
+            <div class="cloud cloud-left"></div>
+            <div class="cloud cloud-right"></div>
+            
+            <div class="roof">
+                <div class="roof-img"></div>
+            </div>
+            
+            <div class="inner-border">
+                <div class="header">
+                    <div class="megaphone">📢</div>
+                    <h1>어흥축제<br>장소 변경 안내</h1>
+                    <p class="subtitle">강우 및 기상악화로 인해</p>
+                    <p class="subtitle"><strong>11/14~11/16 현장 행사는 모두</strong></p>
+                    <p class="subtitle"><strong>실내에서 진행됩니다</strong></p>
+                </div>
+                
+                <div class="venue-section">
+                    <div class="venue-title">
+                        <span class="diamond"></span>
+                        <span>새 실내 행사장</span>
+                        <span class="diamond"></span>
+                    </div>
+                    <div class="address">16918 Edwards Rd</div>
+                    <div class="address-sub">(Indoor Venue)</div>
+                    <div class="address-sub">Cerritos, CA 90703</div>
+                </div>
+                
+                <div class="urgent-box">
+                    <p>11/13 온라인 이벤트는 예정대로</p>
+                    <p>진행됩니다</p>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <!-- English Section -->
+                <div class="en-section">
+                    <h2>🔔 VENUE CHANGE<br>NOTICE</h2>
+                    
+                    <p class="info-text">Due to rain and adverse weather</p>
+                    <p class="info-text"><strong>All on-site events from 11/14-11/16</strong></p>
+                    <p class="info-text"><strong>will be held INDOORS</strong></p>
+                    
+                    <div class="venue-section" style="margin-top: 25px;">
+                        <div class="venue-title">
+                            <span class="diamond"></span>
+                            <span>NEW INDOOR VENUE</span>
+                            <span class="diamond"></span>
+                        </div>
+                        <div class="address">16918 Edwards Rd</div>
+                        <div class="address-sub">(Indoor Venue)</div>
+                        <div class="address-sub">Cerritos, CA 90703</div>
+                    </div>
+                    
+                    <div class="urgent-box">
+                        <p>11/13 online event will proceed</p>
+                        <p>as scheduled</p>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <p><strong>문의 | Contact:</strong></p>
+                    <p>roarculturefestival@gmail.com</p>
+                    <p>213-999-2447</p>
+                </div>
+                
+                <div class="website-button-container">
+                    <a href="http://daroousa.com/en/bbs/board.php?bo_table=en_w4_c&wr_id=1" target="_blank" class="website-button">
+                        🌐 어흥축제 공식홈페이지 방문하기<br>
+                        <span class="button-subtitle">Visit ROAR Festival Official Website</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flower flower-left"></div>
+            <div class="flower flower-right"></div>
+        </div>
+    </div>
+</body>
+</html>
